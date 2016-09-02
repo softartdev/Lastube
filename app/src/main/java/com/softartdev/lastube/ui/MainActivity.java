@@ -104,7 +104,9 @@ public class MainActivity extends SingleFragmentActivity
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Picasso.with(getContext()).load(imageURL).into(imageButton);
+            if (!imageURL.equals("")){
+                Picasso.with(getContext()).load(imageURL).into(imageButton);
+            }
             usernameTextView.setText(nameString);
             playsTextView.setText(playsString);
             if (!recentCoverURL.equals("")){
