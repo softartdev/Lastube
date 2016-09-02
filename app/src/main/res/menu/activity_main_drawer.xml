@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_scrobbling_now"
+            android:icon="@drawable/ic_menu_scrobbling_now"
+            android:title="@string/scrobbling_now" />
+        <item
+            android:id="@+id/nav_scrobbles"
+            android:icon="@drawable/ic_menu_scrobbles"
+            android:title="@string/scrobbles" />
+        <item
+            android:id="@+id/nav_top_artists"
+            android:icon="@drawable/ic_menu_top_artists"
+            android:title="@string/top_artists" />
+        <item
+            android:id="@+id/nav_top_albums"
+            android:icon="@drawable/ic_menu_top_albums"
+            android:title="@string/top_albums" />
+        <item
+            android:id="@+id/nav_top_tracks"
+            android:icon="@drawable/ic_menu_top_tracks"
+            android:title="@string/top_tracks" />
+    </group>
+
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
+                android:title="@string/action_settings" />
+            <item
+                android:id="@+id/nav_login"
+                android:icon="@drawable/ic_menu_login"
+                android:title="@string/action_login" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_logout"
+                android:title="@string/action_logout" />
+    </group>
+
+</menu>
