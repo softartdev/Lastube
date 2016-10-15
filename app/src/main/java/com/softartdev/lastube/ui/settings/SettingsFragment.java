@@ -12,6 +12,7 @@ import com.softartdev.lastube.SessionManager;
 import com.softartdev.lastube.ui.login.LoginActivity;
 
 public class SettingsFragment extends ListFragment {
+    //TODO extend PreferencesFragment
 
     final String[] setList = new String[]{"LogIn", "LogOut"};
 

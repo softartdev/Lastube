@@ -24,6 +24,7 @@ import de.umass.lastfm.ImageSize;
 import de.umass.lastfm.User;
 
 public class TopAlbumsFragment extends CustomRecyclerFragment {
+    //TODO: add MVP
     ArrayList<ListItem> mListData;
     View view;
 
@@ -47,6 +48,7 @@ public class TopAlbumsFragment extends CustomRecyclerFragment {
 
         @Override
         protected void onPreExecute() {
+            //TODO: add ProgressBar
             super.onPreExecute();
             context = inflater.getContext();
             SharedPreferences sharedPreferences = context.getSharedPreferences("SoftArtDevPref", 0);

@@ -38,6 +38,7 @@ public class InfoActivity extends AppCompatActivity {
 
         itemTitleTextView.setText(listItem.getTitle());
         itemSubtitleTextView.setText(listItem.getSubtitle());
+        // TODO: add WebView
         itemDescriptionTextView.setText(Html.fromHtml(listItem.getWiki()));
         String url = listItem.getExtralargeURL();
         if (itemImageView != null && !url.equals("")) {

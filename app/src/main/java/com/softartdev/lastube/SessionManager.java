@@ -10,6 +10,7 @@ import android.content.SharedPreferences.Editor;
 import com.softartdev.lastube.ui.login.LoginActivity;
 
 public class SessionManager {
+    // TODO: store login and password in Android Keystore (https://developer.android.com/training/articles/keystore.html)
     // Shared Preferences
     SharedPreferences pref;
     // Editor for Shared preferences
