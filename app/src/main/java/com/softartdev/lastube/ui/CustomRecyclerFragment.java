@@ -46,6 +46,7 @@ public class CustomRecyclerFragment extends Fragment {
             subtitleView.setText(item.getSubtitle());
             descriptionView.setText(item.getDescription());
 
+            // TODO: add Realm
             String url = item.getUrl();
             if (url != null && !url.equals("")) {
                 Picasso.with(itemView.getContext())
