@@ -105,12 +105,12 @@ public class MainActivity extends SingleFragmentActivity
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (!imageURL.equals("")){
-                Picasso.with(getContext()).load(imageURL).into(imageButton);
+                Picasso.get().load(imageURL).into(imageButton);
             }
             usernameTextView.setText(nameString);
             playsTextView.setText(playsString);
             if (!recentCoverURL.equals("")){
-                Picasso.with(getContext()).load(recentCoverURL).into(new Target() {
+                Picasso.get().load(recentCoverURL).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -119,7 +119,7 @@ public class MainActivity extends SingleFragmentActivity
                     }
 
                     @Override
-                    public void onBitmapFailed(Drawable errorDrawable) {
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
                         Log.d("TAG", "FAILED");
                     }
 

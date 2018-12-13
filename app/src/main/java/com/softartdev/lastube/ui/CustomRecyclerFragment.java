@@ -49,7 +49,7 @@ public class CustomRecyclerFragment extends Fragment {
             // TODO: add Realm
             String url = item.getUrl();
             if (url != null && !url.equals("")) {
-                Picasso.with(itemView.getContext())
+                Picasso.get()
                         .load(url)
                         .placeholder(R.drawable.ic_menu_scrobbling_now)
                         .error(R.drawable.ic_menu_top_albums)

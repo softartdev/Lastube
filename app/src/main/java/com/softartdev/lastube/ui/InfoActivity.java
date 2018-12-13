@@ -42,7 +42,7 @@ public class InfoActivity extends AppCompatActivity {
         itemDescriptionTextView.setText(Html.fromHtml(listItem.getWiki()));
         String url = listItem.getExtralargeURL();
         if (itemImageView != null && !url.equals("")) {
-            Picasso.with(getApplicationContext())
+            Picasso.get()
                     .load(url)
                     .placeholder(R.drawable.ic_menu_scrobbling_now)
                     .error(R.drawable.ic_menu_top_albums)

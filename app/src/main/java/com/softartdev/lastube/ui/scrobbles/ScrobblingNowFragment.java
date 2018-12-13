@@ -90,7 +90,7 @@ public class ScrobblingNowFragment extends Fragment {
             infoWikiTextView.setText(Html.fromHtml(infoWikiString));
             // inflating image
             if (imageView != null && !infoImageURL.equals("")) {
-                Picasso.with(context)
+                Picasso.get()
                         .load(infoImageURL)
                         .placeholder(R.drawable.ic_menu_scrobbling_now)
                         .error(R.drawable.ic_menu_top_albums)

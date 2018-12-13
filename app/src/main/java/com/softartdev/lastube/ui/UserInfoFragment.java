@@ -90,7 +90,7 @@ public class UserInfoFragment extends Fragment {
             }
             // inflating image
             if (imageView != null && !imageURL.equals("")) {
-                Picasso.with(context)
+                Picasso.get()
                         .load(imageURL)
                         .placeholder(R.drawable.ic_menu_scrobbling_now)
                         .error(R.drawable.ic_menu_top_albums)
