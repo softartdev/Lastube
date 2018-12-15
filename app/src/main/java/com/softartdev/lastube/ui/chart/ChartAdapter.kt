@@ -1,13 +1,13 @@
 package com.softartdev.lastube.ui.chart
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.model.ResultType
-import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_chart.*
 
@@ -29,14 +29,14 @@ class ChartAdapter : RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(result: ResultItem) = with(containerView) {
-            chart_title_text_view.text = result.title
+            Glide.with(containerView).load(result.imageUrl).into(chart_image_view)
             chart_subtitle_text_view.apply {
                 text = when(result.type) {
                     ResultType.Artist -> context.getString(R.string.scrobbles_count, result.subtitle)
                     else -> result.subtitle
                 }
             }
-            Picasso.get().load(result.imageUrl).into(chart_image_view)
+            chart_title_text_view.text = result.title
         }
     }
 
