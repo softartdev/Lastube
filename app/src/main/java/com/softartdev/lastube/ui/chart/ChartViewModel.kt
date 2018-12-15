@@ -1,7 +1,7 @@
 package com.softartdev.lastube.ui.chart
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.softartdev.lastube.LastfmAPI
 import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.model.ResultType

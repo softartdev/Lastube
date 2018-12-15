@@ -2,7 +2,7 @@ package com.softartdev.lastube.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.softartdev.lastube.ui.chart.ChartActivity
 
 class SplashActivity : AppCompatActivity() {
