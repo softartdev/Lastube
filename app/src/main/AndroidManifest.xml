@@ -22,7 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.chart.ChartActivity" />
+        <activity
+            android:name=".ui.chart.ChartActivity"
+            android:label="@string/title_activity_top"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"

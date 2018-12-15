@@ -1,6 +1,10 @@
 package com.softartdev.lastube.model
 
-open class Resource<out T> constructor(val status: ResourceState, val data: T?, val message: String?) {
+open class Resource<out T> constructor(
+        val status: ResourceState,
+        val data: T?,
+        val message: String?
+) {
 
     fun <T> success(data: T): Resource<T> {
         return Resource(ResourceState.SUCCESS, data, null)

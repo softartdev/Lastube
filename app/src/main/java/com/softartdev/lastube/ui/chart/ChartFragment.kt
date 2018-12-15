@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
+import com.softartdev.lastube.model.ResultType
 import com.softartdev.lastube.ui.widget.empty.EmptyListener
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.chart_fragment.*
@@ -22,12 +23,19 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
 
     private lateinit var viewModel: ChartViewModel
 
+    private lateinit var resultType: ResultType
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        resultType = ResultType.values()[arguments?.getInt(POS_RESULT_TYPE) ?: throw IllegalArgumentException("ChartFragment requires a result type@")]
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.chart_fragment, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ChartViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, ChartViewModelFactory(resultType)).get(ChartViewModel::class.java)
         viewModel.chartLiveData.observe(this, Observer { chartState ->
             chartState?.let { handleChartState(it) }
         })
@@ -38,9 +46,6 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
         }
         chart_empty_view.emptyListener = this
         chart_error_view.errorListener = this
-        if (savedInstanceState == null) {
-            viewModel.getArtistsChart()
-        }
     }
 
     private fun handleChartState(chartState: ChartState) = when (chartState.resourceState) {
@@ -56,7 +61,7 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
             chart_progress_view.visibility = View.GONE
             chart_empty_view.visibility = if (chartState.data.isNullOrEmpty()) View.VISIBLE else View.GONE
             chart_error_view.visibility = View.GONE
-            chartState.data?.let { chartAdapter.artists = it }
+            chartState.data?.let { chartAdapter.results = it }
         }
         ResourceState.ERROR -> {
             chart_swipe_refresh_layout.isRefreshing = false
@@ -72,7 +77,11 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
         }
     }
 
-    override fun onRefresh() = viewModel.getArtistsChart()
-    override fun onCheckAgainClicked() = viewModel.getArtistsChart()
-    override fun onTryAgainClicked() = viewModel.getArtistsChart()
+    override fun onRefresh() = viewModel.getChart()
+    override fun onCheckAgainClicked() = viewModel.getChart()
+    override fun onTryAgainClicked() = viewModel.getChart()
+
+    companion object {
+        const val POS_RESULT_TYPE = "result_type"
+    }
 }

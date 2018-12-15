@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.softartdev.lastube.R
+import com.softartdev.lastube.model.ResultItem
+import com.softartdev.lastube.model.ResultType
 import com.squareup.picasso.Picasso
-import de.umass.lastfm.Artist
-import de.umass.lastfm.ImageSize
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_chart.*
 
 class ChartAdapter : RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
 
-    var artists: List<Artist> = emptyList()
+    var results: List<ResultItem> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,17 +23,20 @@ class ChartAdapter : RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
             containerView = LayoutInflater.from(parent.context).inflate(R.layout.item_chart, parent, false)
     )
 
-    override fun getItemCount() = artists.size
+    override fun getItemCount() = results.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(artists[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(results[position])
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bind(artist: Artist) = with(containerView) {
-            chart_title_text_view.text = artist.name
+        fun bind(result: ResultItem) = with(containerView) {
+            chart_title_text_view.text = result.title
             chart_subtitle_text_view.apply {
-                text = context.getString(R.string.scrobbles_count, artist.playcount)
+                text = when(result.type) {
+                    ResultType.Artist -> context.getString(R.string.scrobbles_count, result.subtitle)
+                    else -> result.subtitle
+                }
             }
-            Picasso.get().load(artist.getImageURL(ImageSize.MEGA)).into(chart_image_view)
+            Picasso.get().load(result.imageUrl).into(chart_image_view)
         }
     }
 
