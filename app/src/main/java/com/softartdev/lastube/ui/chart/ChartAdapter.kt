@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.item_chart.*
 
 class ChartAdapter : RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
 
+    var chartClickListener: ChartClickListener? = null
+
     var results: List<ResultItem> = emptyList()
         set(value) {
             field = value
@@ -29,14 +31,15 @@ class ChartAdapter : RecyclerView.Adapter<ChartAdapter.ViewHolder>() {
 
     inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(result: ResultItem) = with(containerView) {
-            Glide.with(containerView).load(result.imageUrl).into(chart_image_view)
+            chart_title_text_view.text = result.title
             chart_subtitle_text_view.apply {
                 text = when(result.type) {
                     ResultType.Artist -> context.getString(R.string.scrobbles_count, result.subtitle)
                     else -> result.subtitle
                 }
             }
-            chart_title_text_view.text = result.title
+            Glide.with(containerView).load(result.imageUrl).into(chart_image_view)
+            setOnClickListener { chartClickListener?.onChartItemClick(result) }
         }
     }
 

@@ -27,8 +27,8 @@ class ChartViewModel(private val resultType: ResultType) : ViewModel() {
         disposable?.dispose()
         disposable = Single.fromCallable {
             when (resultType) {
-                ResultType.Artist -> Chart.getTopArtists(LastfmAPI.key)
-                ResultType.Track -> Chart.getTopTracks(LastfmAPI.key)
+                ResultType.Artist -> Chart.getTopArtists(LastfmAPI.KEY)
+                ResultType.Track -> Chart.getTopTracks(LastfmAPI.KEY)
             }
         }.toObservable().flatMapIterable { it.pageResults }
                 .observeOn(Schedulers.computation())

@@ -9,15 +9,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.Snackbar
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
+import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.model.ResultType
 import com.softartdev.lastube.ui.widget.empty.EmptyListener
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.chart_fragment.*
 import kotlinx.android.synthetic.main.view_error.view.*
 
-class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayout.OnRefreshListener {
+class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayout.OnRefreshListener, ChartClickListener {
 
     private val chartAdapter: ChartAdapter by lazy { ChartAdapter() }
 
@@ -44,6 +46,7 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
             layoutManager = LinearLayoutManager(requireContext())
             adapter = chartAdapter
         }
+        chartAdapter.chartClickListener = this
         chart_empty_view.emptyListener = this
         chart_error_view.errorListener = this
     }
@@ -75,6 +78,10 @@ class ChartFragment : Fragment(), EmptyListener, ErrorListener, SwipeRefreshLayo
                 chartState.errorMessage
             }
         }
+    }
+
+    override fun onChartItemClick(resultItem: ResultItem) {
+        view?.let { Snackbar.make(it, resultItem.toString(), Snackbar.LENGTH_LONG).show() }
     }
 
     override fun onRefresh() = viewModel.getChart()
