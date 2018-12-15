@@ -26,29 +26,6 @@
             android:name=".ui.chart.ChartActivity"
             android:label="@string/title_activity_top"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".ui.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.softartdev.lastube.ui.MainActivity" />
-        </activity>
-        <activity android:name=".ui.SingleFragmentActivity" />
-        <activity
-            android:name=".ui.InfoActivity"
-            android:label="@string/title_activity_info"
-            android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.softartdev.lastube.ui.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

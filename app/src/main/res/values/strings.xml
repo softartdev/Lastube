@@ -1,28 +1,5 @@
 <resources>
     <string name="app_name">Lastube</string>
-
-    <string name="lostpassword"><a href="https://secure.last.fm/settings/lostpassword">Forgot your username or password?</a></string>
-    <string name="join">Don‘t have a profile? <a href="https://secure.last.fm/join?next=/">Sign up for FREE</a></string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="scrobbling_now">Scrobbling now</string>
-    <string name="scrobbles">Scrobbles</string>
-    <string name="top_artists">Top Artists</string>
-    <string name="top_albums">Top Albums</string>
-    <string name="top_tracks">Top Tracks</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_login">LogIn</string>
-    <string name="action_logout">LogOut</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="title">Title</string>
-    <string name="subtitle">Subtitle</string>
-    <string name="description">Description</string>
-    <string name="image">Image</string>
-    <string name="country">Country</string>
-    <string name="scrobbling_since">scrobbling since</string>
-    <string name="loved_tracks">Loved Tracks</string>
-    <string name="top_tags">Top Tags</string>
-    <string name="title_activity_info">Info</string>
     <string name="loading">Loading</string>
     <string name="please_wait">Please wait…</string>
     <string name="label_empty_result">Oops, there are no results to display</string>
