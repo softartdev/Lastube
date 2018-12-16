@@ -9,4 +9,5 @@
     <string name="title_activity_top">Top Chart</string>
     <string name="tracks">Tracks</string>
     <string name="artists">Artists</string>
+    <string name="title_activity_track">Track</string>
 </resources>
