@@ -11,9 +11,9 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/chart_image_view"
-            android:layout_width="@android:dimen/thumbnail_height"
-            android:layout_height="@android:dimen/thumbnail_height"
+            android:id="@+id/album_image_view"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/chart_title_text_view"
+            android:id="@+id/album_title_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -37,12 +37,12 @@
             android:maxLines="2"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/chart_image_view"
+            app:layout_constraintStart_toEndOf="@+id/album_image_view"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/lorem/random" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/chart_subtitle_text_view"
+            android:id="@+id/album_subtitle_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -54,8 +54,8 @@
             android:maxLines="2"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/chart_image_view"
-            app:layout_constraintTop_toBottomOf="@+id/chart_title_text_view"
+            app:layout_constraintStart_toEndOf="@+id/album_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/album_title_text_view"
             tools:text="@tools:sample/lorem/random" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

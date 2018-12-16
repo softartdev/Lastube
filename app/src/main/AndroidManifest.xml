@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.softartdev.lastube.ui.chart.ChartActivity" />
         </activity>
+        <activity
+            android:name=".ui.artist.ArtistActivity"
+            android:label="@string/title_activity_artist"
+            android:parentActivityName=".ui.chart.ChartActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.softartdev.lastube.ui.chart.ChartActivity" />
+        </activity>
     </application>
 
 </manifest>

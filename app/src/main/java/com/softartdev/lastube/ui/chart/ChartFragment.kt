@@ -13,6 +13,7 @@ import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
 import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.model.ResultType
+import com.softartdev.lastube.ui.artist.ArtistActivity
 import com.softartdev.lastube.ui.track.TrackActivity
 import com.softartdev.lastube.ui.widget.empty.EmptyListener
 import com.softartdev.lastube.ui.widget.error.ErrorListener
@@ -81,9 +82,10 @@ class ChartFragment : Fragment(), Observer<ChartState>, EmptyListener, ErrorList
         }
     }
 
-    override fun onChartItemClick(resultItem: ResultItem) {
-        startActivity(TrackActivity.getIntent(requireContext(), resultItem))
-    }
+    override fun onChartItemClick(resultItem: ResultItem) = startActivity(when(resultItem.type) {
+        ResultType.Track -> TrackActivity.getIntent(requireContext(), resultItem)
+        ResultType.Artist -> ArtistActivity.getIntent(requireContext(), resultItem)
+    })
 
     override fun onRefresh() = viewModel.getChart()
     override fun onCheckAgainClicked() = viewModel.getChart()

@@ -47,7 +47,7 @@ class TrackActivity : AppCompatActivity(), Observer<TrackState>, ErrorListener {
                 track_text_view.visibility = View.VISIBLE
                 track_progress_view.visibility = View.GONE
                 track_error_view.visibility = View.GONE
-                trackState.track?.let { track_text_view.text = it.wikiText }
+                trackState.trackResult?.let { track_text_view.text = it.track?.wikiText }
             }
             ResourceState.ERROR -> {
                 track_text_view.visibility = View.GONE
