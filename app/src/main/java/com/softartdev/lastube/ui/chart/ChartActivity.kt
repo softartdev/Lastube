@@ -1,8 +1,8 @@
 package com.softartdev.lastube.ui.chart
 
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.tabs.TabLayout
 import com.softartdev.lastube.R
 import kotlinx.android.synthetic.main.activity_chart.*
 

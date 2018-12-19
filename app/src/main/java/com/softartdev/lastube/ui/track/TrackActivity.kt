@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
-import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.activity_track.*
 import kotlinx.android.synthetic.main.content_track.*
@@ -76,10 +75,10 @@ class TrackActivity : AppCompatActivity(), Observer<TrackState>, ErrorListener {
         private const val EXT_TITLE = "ext_title"
         private const val EXT_SUBTITLE = "ext_subtitle"
 
-        fun getIntent(context: Context, resultItem: ResultItem) =
+        fun getIntent(context: Context, title: String, subtitle: String) =
                 Intent(context, TrackActivity::class.java).apply {
-                    putExtra(EXT_TITLE, resultItem.title)
-                    putExtra(EXT_SUBTITLE, resultItem.subtitle)
+                    putExtra(EXT_TITLE, title)
+                    putExtra(EXT_SUBTITLE, subtitle)
                 }
     }
 }

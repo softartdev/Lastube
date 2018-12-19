@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
 import com.softartdev.lastube.model.ResultItem
+import com.softartdev.lastube.ui.album.AlbumActivity
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import de.umass.lastfm.Album
 import kotlinx.android.synthetic.main.activity_artist.*
@@ -75,7 +75,7 @@ class ArtistActivity : AppCompatActivity(), Observer<ArtistState>, AlbumClickLis
 
     override fun onChartItemClick(album: Album) {
         Timber.d(album.toString())
-        Snackbar.make(artist_recycler_view, album.name, Snackbar.LENGTH_LONG).show()
+        startActivity(AlbumActivity.getIntent(this, album.artist, album.name))
     }
 
     override fun onTryAgainClicked() = viewModel.getArtist()
