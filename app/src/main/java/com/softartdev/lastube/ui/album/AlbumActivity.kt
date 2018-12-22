@@ -2,16 +2,18 @@ package com.softartdev.lastube.ui.album
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.softartdev.lastube.R
 import com.softartdev.lastube.model.ResourceState
-import com.softartdev.lastube.ui.track.TrackActivity
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import de.umass.lastfm.Track
 import kotlinx.android.synthetic.main.activity_album.*
@@ -70,7 +72,10 @@ class AlbumActivity : AppCompatActivity(), Observer<AlbumState>, TrackClickListe
     }
     
     override fun onTrackItemClick(track: Track) {
-        startActivity(TrackActivity.getIntent(this, track.artist, track.name, track.mbid))
+        CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(this, R.color.primary))
+                .build()
+                .launchUrl(this, Uri.parse(track.url))
     }
 
     override fun onTryAgainClicked() = viewModel.getAlbum()

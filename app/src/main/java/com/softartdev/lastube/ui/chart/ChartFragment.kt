@@ -1,9 +1,12 @@
 package com.softartdev.lastube.ui.chart
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,7 +17,6 @@ import com.softartdev.lastube.model.ResourceState
 import com.softartdev.lastube.model.ResultItem
 import com.softartdev.lastube.model.ResultType
 import com.softartdev.lastube.ui.artist.ArtistActivity
-import com.softartdev.lastube.ui.track.TrackActivity
 import com.softartdev.lastube.ui.widget.empty.EmptyListener
 import com.softartdev.lastube.ui.widget.error.ErrorListener
 import kotlinx.android.synthetic.main.chart_fragment.*
@@ -82,10 +84,13 @@ class ChartFragment : Fragment(), Observer<ChartState>, EmptyListener, ErrorList
         }
     }
 
-    override fun onChartItemClick(resultItem: ResultItem) = startActivity(when(resultItem.type) {
-        ResultType.Track -> TrackActivity.getIntent(requireContext(), resultItem.title, resultItem.subtitle, resultItem.mbId)
-        ResultType.Artist -> ArtistActivity.getIntent(requireContext(), resultItem)
-    })
+    override fun onChartItemClick(resultItem: ResultItem) = when (resultItem.type) {
+        ResultType.Artist -> startActivity(ArtistActivity.getIntent(requireContext(), resultItem))
+        ResultType.Track -> CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(requireContext(), R.color.primary))
+                .build()
+                .launchUrl(requireContext(), Uri.parse(resultItem.url))
+    }
 
     override fun onRefresh() = viewModel.getChart()
     override fun onCheckAgainClicked() = viewModel.getChart()

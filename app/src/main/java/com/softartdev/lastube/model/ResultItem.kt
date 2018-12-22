@@ -5,5 +5,6 @@ data class ResultItem(
         val subtitle: String,
         val imageUrl: String,
         val type: ResultType,
-        val mbId: String
+        val mbId: String,
+        val url: String
 )
