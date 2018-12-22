@@ -16,7 +16,8 @@ import timber.log.Timber
 
 class TrackViewModel(
         private val artist: String,
-        private val track: String
+        private val track: String,
+        private val mbId: String
 ) : ViewModel() {
 
     val trackLiveData: MutableLiveData<TrackState> = MutableLiveData()
@@ -29,11 +30,12 @@ class TrackViewModel(
 
     fun getTrack() {
         disposable?.dispose()
+        val trackOrMbid: String = if (mbId.isBlank() || mbId.isEmpty()) track else mbId
         disposable = Single.zip(
-                Single.fromCallable { Track.getInfo(artist, track, LastfmAPI.KEY) },
+                Single.fromCallable { Track.getInfo(artist, trackOrMbid, LastfmAPI.KEY) },
                 Observable.fromCallable { Artist.getTopAlbums(artist, LastfmAPI.KEY) }
                         .flatMapIterable { it }
-                        .filter { it.name == track }
+                        .filter { findTrack(it) }
                         .toList(),
                 Single.fromCallable { Artist.getInfo(artist, LastfmAPI.KEY) },
                 Function3<Track, Collection<Album>, Artist, TrackResult> { resultTracks, resultAlbums, resultArtist ->
@@ -55,6 +57,15 @@ class TrackViewModel(
                     trackLiveData.postValue(TrackState.Error(it.message))
                 })
 
+    }
+
+    private fun findTrack(album: Album): Boolean {
+        album.tracks?.forEach {
+            if (it.mbid == mbId || it.name == track) {
+                return true
+            }
+        }
+        return false
     }
 
     override fun onCleared() {

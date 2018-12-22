@@ -70,7 +70,7 @@ class AlbumActivity : AppCompatActivity(), Observer<AlbumState>, TrackClickListe
     }
     
     override fun onTrackItemClick(track: Track) {
-        startActivity(TrackActivity.getIntent(this, track.artist, track.name))
+        startActivity(TrackActivity.getIntent(this, track.artist, track.name, track.mbid))
     }
 
     override fun onTryAgainClicked() = viewModel.getAlbum()

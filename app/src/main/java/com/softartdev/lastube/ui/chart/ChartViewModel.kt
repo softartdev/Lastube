@@ -42,7 +42,8 @@ class ChartViewModel(private val resultType: ResultType) : ViewModel() {
                             imageUrl = it.getImageURL(ImageSize.EXTRALARGE)
                                     ?: it.getImageURL(ImageSize.MEGA)
                                     ?: it.getImageURL(it.availableSizes().last()),
-                            type = resultType
+                            type = resultType,
+                            mbId = it.mbid
                     )
                 }.toList()
                 .subscribeOn(Schedulers.io())

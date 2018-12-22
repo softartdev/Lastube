@@ -83,7 +83,7 @@ class ChartFragment : Fragment(), Observer<ChartState>, EmptyListener, ErrorList
     }
 
     override fun onChartItemClick(resultItem: ResultItem) = startActivity(when(resultItem.type) {
-        ResultType.Track -> TrackActivity.getIntent(requireContext(), resultItem.title, resultItem.subtitle)
+        ResultType.Track -> TrackActivity.getIntent(requireContext(), resultItem.title, resultItem.subtitle, resultItem.mbId)
         ResultType.Artist -> ArtistActivity.getIntent(requireContext(), resultItem)
     })
 
